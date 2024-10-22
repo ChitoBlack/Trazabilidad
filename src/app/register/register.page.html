@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrarse</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="register-container">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <!-- Campo para el correo electrónico -->
+      <ion-item>
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        {{ getEmailError() }}
+      </ion-text>
+
+      <!-- Campo para la contraseña -->
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        {{ getPasswordError() }}
+      </ion-text>
+
+      <!-- Subida de Imagen -->
+      <div class="image-container">
+        <div class="image-bubble" *ngIf="selectedImage; else placeholder">
+          <img [src]="selectedImage" alt="Imagen de perfil">
+        </div>
+        <ng-template #placeholder>
+          <div class="placeholder-bubble">Imagen</div>
+        </ng-template>
+      </div>
+
+      <ion-item>
+        <ion-item>
+          <input type="file" accept="image/*" (change)="selectImage($event)">
+        </ion-item>
+      </ion-item>
+
+      <!-- Botón de registro -->
+      <ion-button expand="full" type="submit" [disabled]="registerForm.invalid || !imageFile">Registrarse</ion-button>
+      <br>
+      <ion-button expand="full" color="primary" (click)="loginWithGoogle()">Iniciar sesión con Google</ion-button>
+    </form>
+  </div>
+</ion-content>
+

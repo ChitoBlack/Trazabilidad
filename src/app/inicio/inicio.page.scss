@@ -1,0 +1,114 @@
+ion-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+ion-grid {
+    width: 100%;
+    max-width: 400px;
+}
+
+ion-button {
+    margin: 10px 0;
+}
+
+.no-user {
+    text-align: center;
+    color: red;
+    font-size: 18px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #757575;
+}
+
+.email {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ion-button {
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .profile-image-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  .timer-container,
+.class-timer-container {
+  position: absolute;
+  font-size: 20px;
+  color: blue; /* Cambia a azul */
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente para mejor visibilidad */
+  padding: 5px; /* Añadir un poco de padding */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra para destacar el contador */
+}
+
+.timer-container {
+  top: 10px; /* Posiciona el contador de sede */
+  right: 10px;
+}
+
+.class-timer-container {
+  top: 10px; /* Posiciona el contador de clases */
+  left: 10px;
+}
+
+

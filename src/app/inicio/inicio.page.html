@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="toggleLocation()" color="tertiary">
+        {{ isTracking ? 'Desactivar GPS' : 'Activar GPS' }}
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Inicio</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" color="danger">Cerrar Sesión</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Mostrar los contadores -->
+  <div class="timer-container" *ngIf="showTimer" style="position: absolute; top: 10px; right: 10px; font-size: 20px;">
+    Tiempo en la sede: {{ timerDisplay }}
+  </div>
+
+  <div class="class-timer-container" *ngIf="showClassTimer" style="position: absolute; top: 10px; left: 10px; font-size: 20px;">
+    Tiempo en clases: {{ classTimerDisplay }}
+  </div>
+
+  <!-- Mostrar imagen y correo -->
+  <div class="welcome-container" *ngIf="userEmail && userProfileImageUrl; else loading">
+    <div class="profile-image-container" style="text-align: center; margin-bottom: 20px;">
+      <img [src]="userProfileImageUrl" alt="Imagen de perfil" class="profile-image" style="border-radius: 50%; width: 120px; height: 120px;">
+    </div>
+    <h2 style="text-align: center;">Bienvenido, {{ userEmail }}</h2>
+
+    <!-- Botones de acciones -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="full" color="primary" (click)="entradaClases()">Entrada Clases</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="full" color="secondary" (click)="salidaClases()">Salida Clases</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-card *ngIf="virtualCard">
+    <ion-card-header>
+      <ion-card-title>Número de Tarjeta: {{ virtualCard.cardNumber }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Saldo Disponible: {{ virtualCard.balance | currency }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Mostrar historial -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openHistorialModal()">
+      <ion-icon name="search"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Historial Modal -->
+  <ion-modal [isOpen]="isHistorialModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Historial de Entradas y Salidas</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeHistorialModal()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item *ngFor="let log of logs">
+            <ion-label>
+              <h2>{{ log.location }} - {{ log.type }}</h2>
+              <p>Hora: {{ log.timestamp | date: 'shortTime' }}</p>
+              <p *ngIf="log.timeSpent">HS: {{ log.timeSpent }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Mensaje de carga mientras se obtienen los datos -->
+  <ng-template #loading>
+    <ion-spinner></ion-spinner>
+    <p>Cargando...</p>
+  </ng-template>
+</ion-content>

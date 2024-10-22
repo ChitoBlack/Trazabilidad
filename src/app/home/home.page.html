@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Bienvenido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="8" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">¡Bienvenido a nuestra App!</ion-card-title>
+            <ion-card-subtitle class="ion-text-center">Por favor, selecciona una opción para continuar</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-button expand="block" color="primary" (click)="navigateToLogin()">
+              Iniciar Sesión
+            </ion-button>
+            <ion-button expand="block" color="secondary" (click)="navigateToRegister()">
+              Registrarse
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
